@@ -7,22 +7,22 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AccountStatusReportDTO {
-    private Long clientId;
+    private Long idClient;
     private String clientName;
     private List<AccountReportDTO> accounts;
 
-    public AccountStatusReportDTO(Long clientId, String clientName, List<AccountReportDTO> accounts) {
-        this.clientId = clientId;
+    public AccountStatusReportDTO(Long idClient, String clientName, List<AccountReportDTO> accounts) {
+        this.idClient = idClient;
         this.clientName = clientName;
         this.accounts = accounts;
     }
 
-    public Long getClientId() {
-        return clientId;
+    public Long getIdClient() {
+        return idClient;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setIdClient(Long idClient) {
+        this.idClient = idClient;
     }
 
     public String getClientName() {

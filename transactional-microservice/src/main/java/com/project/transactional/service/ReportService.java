@@ -27,7 +27,6 @@ import com.project.transactional.repository.MovementRepository;
 @Service
 @Transactional
 public class ReportService {
-    private final Logger log = LoggerFactory.getLogger(ReportService.class);
 
     private final AccountRepository accountRepository;
     private final MovementRepository movementRepository;

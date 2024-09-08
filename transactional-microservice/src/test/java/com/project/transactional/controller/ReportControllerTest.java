@@ -39,7 +39,7 @@ public class ReportControllerTest {
     public void getAccountStatusReportTest() throws Exception {
         Long idClient = 1L;
         LocalDate initDate = LocalDate.now();
-        LocalDate finalDate = LocalDate.now();
+        LocalDate endDate = LocalDate.now();
 
         when(reportService.generateAccountStatusReport(anyLong(), any(LocalDate.class), any(LocalDate.class)))
                 .thenReturn(new AccountStatusReportDTO(idClient, "New Client", Collections.emptyList()));
@@ -47,7 +47,7 @@ public class ReportControllerTest {
         mockMvc.perform(get("/reportes")
                 .param("idClient", idClient.toString())
                 .param("initDate", initDate.toString())
-                .param("finalDate", finalDate.toString()))
+                .param("endDate", endDate.toString()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.idClient").value(idClient));
     }
