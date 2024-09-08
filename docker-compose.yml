@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  client-microservice:
+    build: ./client-microservice
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_HOST: mysql-client
+    depends_on:
+      - mysql-client
+
+  transactional-microservice:
+    build: ./transactional-microservice
+    ports:
+      - "8081:8081"
+    environment:
+      DATABASE_HOST: mysql-transactional
+    depends_on:
+      - mysql-transactional
+
+  mysql-client:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: BDD_TRANSACTIONAL
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-client-data:/var/lib/mysql
+
+  mysql-transactional:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: BDD_TRANSACTIONAL
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-transactional-data:/var/lib/mysql
+
+volumes:
+  mysql-client-data:
+  mysql-transactional-data:
