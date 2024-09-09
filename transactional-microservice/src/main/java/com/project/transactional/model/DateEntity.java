@@ -1,23 +1,23 @@
 package com.project.transactional.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.sql.Date;
-
+@Setter
+@Getter
 @MappedSuperclass
 public abstract class DateEntity {
 
     @CreatedDate
-    @Column(name = "CREATE_DATE", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private Date creationDate;
+    @Column(name = "CREATE_DATE", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private java.util.Date creationDate;
 
-    public Date getCreationDate() {
-        return creationDate;
+    @PrePersist
+    protected void onCreate() {
+        this.creationDate = new java.util.Date();
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 }

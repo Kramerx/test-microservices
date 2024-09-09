@@ -1,15 +1,20 @@
 package com.project.transactional.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+@Setter
+@Getter
 public class AccountReportDTO {
-    private Long accountNumber;
+    private String accountNumber;
     private String typeAccount;
     private BigDecimal initialBalance;
     private List<MovementReportDTO> movements;
 
-    public AccountReportDTO(Long accountNumber, String typeAccount, BigDecimal initialBalance,
+    public AccountReportDTO(String accountNumber, String typeAccount, BigDecimal initialBalance,
                             List<MovementReportDTO> movements) {
         super();
         this.accountNumber = accountNumber;
@@ -18,35 +23,4 @@ public class AccountReportDTO {
         this.movements = movements;
     }
 
-    public Long getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getTypeAccount() {
-        return typeAccount;
-    }
-
-    public void setTypeAccount(String typeAccount) {
-        this.typeAccount = typeAccount;
-    }
-
-    public BigDecimal getInitialBalance() {
-        return initialBalance;
-    }
-
-    public void setInitialBalance(BigDecimal initialBalance) {
-        this.initialBalance = initialBalance;
-    }
-
-    public List<MovementReportDTO> getMovements() {
-        return movements;
-    }
-
-    public void setMovements(List<MovementReportDTO> movements) {
-        this.movements = movements;
-    }
 }

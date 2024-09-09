@@ -1,11 +1,12 @@
 package com.project.transactional.dto;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+@Setter
+@Getter
 public class AccountStatusReportDTO {
     private Long idClient;
     private String clientName;
@@ -17,27 +18,4 @@ public class AccountStatusReportDTO {
         this.accounts = accounts;
     }
 
-    public Long getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
-    }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public List<AccountReportDTO> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<AccountReportDTO> accounts) {
-        this.accounts = accounts;
-    }
 }
