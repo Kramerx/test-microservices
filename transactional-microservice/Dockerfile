@@ -1,4 +1,4 @@
 FROM openjdk:17
 WORKDIR /app
-COPY target/transactional-microservice-0.0.1-SNAPSHOT.jar app.jar
+COPY target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]

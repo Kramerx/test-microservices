@@ -44,7 +44,7 @@ public class ReportControllerTest {
         when(reportService.generateAccountStatusReport(anyLong(), any(LocalDate.class), any(LocalDate.class)))
                 .thenReturn(new AccountStatusReportDTO(idClient, "New Client", Collections.emptyList()));
 
-        mockMvc.perform(get("/reportes")
+        mockMvc.perform(get("/report")
                 .param("idClient", idClient.toString())
                 .param("initDate", initDate.toString())
                 .param("endDate", endDate.toString()))
