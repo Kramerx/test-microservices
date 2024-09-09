@@ -1,73 +1,32 @@
 package com.project.client.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "TRA_PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person extends DateEntity {
 
     @Id
-    @Column(name = "ID_PERSON", nullable = false)
+    @Column(name = "ID_PERSON")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long identification;
+    private Long personId;
 
+    @Column(name = "IDENTIFICATION", length = 10, nullable = false)
+    private String identification;
     @Column(name = "NAME", nullable = false)
     private String name;
     @Column(name = "GENDER", nullable = false)
     private String gender;
-    @Column(name = "AGE", nullable = false)
-    private Integer age;
+    @Column(name = "YEAR_BIRTH", nullable = false)
+    private Integer yearBirth;
     @Column(name = "ADDRESS", nullable = false)
     private String address;
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    public Long getIdentification() {
-        return identification;
-    }
-
-    public void setIdentification(Long identification) {
-        this.identification = identification;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

@@ -30,35 +30,35 @@ class ClientControllerTest {
     @Test
     void whenGetAllClient_thenGetList() throws Exception {
         Client client1 = new Client();
-        client1.setIdClient(1L);
+        client1.setClientId(1L);
         client1.setPassword("pass123");
         client1.setStateClient(true);
         client1.setName("Name1");
         client1.setGender("Male");
-        client1.setAge(30);
-        client1.setIdentification(123456789L);
+        client1.setYearBirth(1990);
+        client1.setIdentification("1234567890");
         client1.setAddress("Cuenca1");
         client1.setPhone("0987654321");
 
         Client client2 = new Client();
-        client2.setIdClient(2L);
+        client2.setClientId(2L);
         client2.setPassword("pass123");
         client2.setStateClient(false);
         client2.setName("Name2");
         client2.setGender("Female");
-        client2.setAge(30);
-        client2.setIdentification(987654321L);
+        client2.setYearBirth(1990);
+        client2.setIdentification("9876543210");
         client2.setAddress("Cuenca2");
         client2.setPhone("0987654321");
 
         List<Client> listClients = Arrays.asList(client1, client2);
         Mockito.when(clientService.findAll()).thenReturn(listClients);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/clientes")
+        mockMvc.perform(MockMvcRequestBuilders.get("/client")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].idClient", is(1)))
-                .andExpect(jsonPath("$[1].idClient", is(2)));
+                .andExpect(jsonPath("$[0].clientId", is(1)))
+                .andExpect(jsonPath("$[1].clientId", is(2)));
     }
 }
