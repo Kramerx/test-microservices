@@ -1,0 +1,283 @@
+openapi: 3.0.0
+info:
+  title: Microservices API
+  description: API documentation for Client and Transactional microservices.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Client Microservice
+  - url: http://localhost:8081
+    description: Transactional Microservice
+paths:
+  /client:
+    get:
+      summary: List all clients
+      tags:
+        - Client
+      responses:
+        "200":
+          description: A list of clients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Client"
+    post:
+      summary: Add a new client
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Client"
+      responses:
+        "201":
+          description: Client created
+  /client/{id}:
+    get:
+      summary: Get client by ID
+      tags:
+        - Client
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Client details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+        "404":
+          description: Client not found
+    put:
+      summary: Update client by ID
+      tags:
+        - Client
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Client"
+      responses:
+        "200":
+          description: Client updated
+    delete:
+      summary: Delete client by ID
+      tags:
+        - Client
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Client deleted
+  /account:
+    get:
+      summary: List all accounts
+      tags:
+        - Account
+      responses:
+        "200":
+          description: A list of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+    post:
+      summary: Add a new account
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "201":
+          description: Account created
+  /account/{id}:
+    get:
+      summary: Get account by ID
+      tags:
+        - Account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "404":
+          description: Account not found
+    put:
+      summary: Update account by ID
+      tags:
+        - Account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: Account updated
+    delete:
+      summary: Delete account by ID
+      tags:
+        - Account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Account deleted
+  /movement:
+    get:
+      summary: List all movements
+      tags:
+        - Movement
+      responses:
+        "200":
+          description: A list of movements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Movement"
+    post:
+      summary: Add a new movement
+      tags:
+        - Movement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Movement"
+      responses:
+        "201":
+          description: Movement created
+  /movement/{id}:
+    get:
+      summary: Get movement by ID
+      tags:
+        - Movement
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Movement details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movement"
+        "404":
+          description: Movement not found
+    delete:
+      summary: Delete movement by ID
+      tags:
+        - Movement
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Movement deleted
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        clientId:
+          type: integer
+        name:
+          type: string
+        identification:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        gender:
+          type: string
+        yearBirth:
+          type: integer
+        password:
+          type: string
+        stateClient:
+          type: boolean
+    Account:
+      type: object
+      properties:
+        idAccount:
+          type: integer
+        numberAccount:
+          type: string
+        typeAccount:
+          type: string
+        initialBalance:
+          type: number
+          format: double
+        state:
+          type: integer
+        idClient:
+          type: integer
+    Movement:
+      type: object
+      properties:
+        idMovement:
+          type: integer
+        typeMovement:
+          type: string
+        amount:
+          type: number
+          format: double
+        finalBalance:
+          type: number
+          format: double
+        account:
+          $ref: "#/components/schemas/Account"
