@@ -87,3 +87,33 @@ docker-compose up --build
 ### Notas adicionales
 - Si necesitas regenerar la base de datos, puedes usar el archivo [`BaseDatos.sql`](BaseDatos.sql).
 - Consulta la documentación OpenAPI en [`openapi.yml`](openapi.yml) para más detalles sobre los endpoints.
+
+#### 5. Ejecutar el pipeline de manera local
+
+Si deseas ejecutar el pipeline de manera local para probar el proceso de construcción y despliegue, sigue estos pasos:
+
+1. **Instalar Act**  
+   Act es una herramienta que permite simular GitHub Actions en tu máquina local. Para instalarla:
+   - En sistemas basados en Linux o macOS:
+     ```bash
+     brew install act
+     ```
+   - En Windows, puedes usar [Chocolatey](https://chocolatey.org/):
+     ```bash
+     choco install act
+     ```
+
+2. **Ejecutar el pipeline**  
+   - Ve al directorio raíz del proyecto (donde se encuentra el archivo `.github/workflows/build-and-deploy.yml`).
+   - Ejecuta el siguiente comando para simular el pipeline:
+     ```bash
+     act push
+     ```
+
+   Esto ejecutará el pipeline como si hubieras hecho un `push` a la rama `main`.
+
+3. **Requisitos previos**  
+   - Asegúrate de que Docker esté instalado y corriendo en tu máquina.
+   - Verifica que los puertos necesarios estén disponibles (ver sección de requisitos previos).
+
+Con esto, podrás probar el pipeline localmente antes de ejecutarlo en un entorno remoto.

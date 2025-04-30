@@ -46,7 +46,7 @@ public class ReportController {
                     endDate);
             return ResponseEntity.ok(report);
         } catch (Exception e) {
-            log.info("[getAccountStateReport] Error in generate report {}", e.getMessage());
+            log.error("[getAccountStateReport] Error in generate report {}", e.getMessage());
             return ResponseEntity.internalServerError().body("Lo sentimos hubo un problema generar el reporte ");
         }
     }
